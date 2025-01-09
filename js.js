@@ -45,6 +45,7 @@ todd.addEventListener('mousemove', mouseMoveHandler);
 let offsetX, offsetY, drag = false;
 
 function mouseDownHandler(e) {
+    e.preventDefault()
   drag = true;
   offsetX = e.clientX - todd.getBoundingClientRect().left;
   offsetY = e.clientY - todd.getBoundingClientRect().top;
