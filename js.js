@@ -1,4 +1,7 @@
 const todd = document.querySelector("#btnMoveMe");
+// const todd ={x:0,y:0,ele:{}}
+
+let moveBy = 10;
 
 todd.addEventListener("click", () =>{
     test()
@@ -8,35 +11,39 @@ todd.addEventListener("onkeydown", () =>{
     testArrow()
 })
 
+window.addEventListener('load', ()=> {
+    todd.style.position = 'absolute';
+    todd.style.left = 0;
+    todd.style.top = 0;
+})
+
 function test() {
     console.log("test")
 }
 
-function testArrow() {
-    console.log("Arrow")
-}
+console.log(innerHeight)
+console.log(innerWidth)
+// InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
 
-todd.addEventListener("keydown", function(event) {
+window.addEventListener("keyup", function(event) {
     switch (event.key) {
         case 'ArrowUp':
             console.log('Up arrow key pressed');
+        //    todd.style.transform = changePosititon (x , (y-=10));
             break;
         case 'ArrowDown':
             console.log('Down arrow key pressed');
+        //    todd.style.transform = changePosititon (x+=10 , (y));
+            todd.style.left =parseInt(todd.style.top) - moveBy +'px';
             break;
         case 'ArrowLeft':
             console.log('Left arrow key pressed');
             break;
         case 'ArrowRight':
             console.log('Right arrow key pressed');
-            moveLeft ()
             break;
     }
 });
-
-function moveLeft(){
-    moveBy(20,40)
-}
 
 todd.addEventListener('mousedown', mouseDownHandler);
 todd.addEventListener('mouseup', mouseUpHandler);
