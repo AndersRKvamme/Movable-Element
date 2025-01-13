@@ -7,10 +7,6 @@ todd.addEventListener("click", () =>{
     test()
 })
 
-todd.addEventListener("onkeydown", () =>{
-    testArrow()
-})
-
 window.addEventListener('load', ()=> {
     todd.style.position = 'absolute';
     todd.style.left = 0;
@@ -45,6 +41,30 @@ window.addEventListener("keydown", function(event) {
             break;
     }
 });
+
+
+// moves todd to the clicked position - lent from Hector
+
+
+
+const pos = { x: 0, y: 0 }; // Initialize position object
+
+const move = () => {
+  todd.style.translate = `${pos.x}px ${pos.y}px`;
+};
+
+addEventListener("click", (toddTest) => {
+  // Get click coordinates
+  pos.x = toddTest.clientX;
+  pos.y = toddTest.clientY;
+
+  // Center the element
+  pos.x -= todd.offsetWidth / 2;
+  pos.y -= todd.offsetHeight / 2;
+
+  move();
+});
+
 
 todd.addEventListener('mousedown', mouseDownHandler);
 todd.addEventListener('mouseup', mouseUpHandler);
