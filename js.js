@@ -6,6 +6,14 @@ const move = () => {
   todd.style.translate = `${pos.x}px ${pos.y}px`;
 };
 const toddBigger = 5
+ 
+function toddReset() {
+  toddSize = 165;
+  toddSize-toddSize
+  todd.style.width = `${toddSize}px`
+  boundsHeight()
+  boundsWidth()
+}
 
 let toddSize = 165
 todd.style.width = `${toddSize}px`
@@ -25,6 +33,8 @@ function boundsWidth() {
 function toddPluss () {
   toddSize = toddSize+toddBigger
   todd.style.width = `${toddSize}px`
+  boundsHeight()
+  boundsWidth()
 }
 function toddMinus () {
   toddSize = toddSize-toddBigger
@@ -79,7 +89,6 @@ window.addEventListener ("keydown", function(event) {
       toddMinus()
      }
      break;
-    
   case '-':
     toddMinus()
     console.log("Todd is shrinking.")
@@ -89,6 +98,10 @@ window.addEventListener ("keydown", function(event) {
       toddPluss()
     }  
     break;
+    case 'r':
+      console.log("Todd has been reset to his original size.");
+        toddReset ()
+      break;
   }});
 
 // InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
