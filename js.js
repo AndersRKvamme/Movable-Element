@@ -109,8 +109,6 @@ window.addEventListener ("keydown", function(event) {
 window.addEventListener("keydown", function(event) {
     switch (event.key) {
         case 'ArrowUp':
-            //console.log('Up arrow key pressed');
-            //todd.style.top =parseInt(todd.style.top) - moveBy +'px';
             pos.y -=moveBy
             console.log(pos);
             move()
