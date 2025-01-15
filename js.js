@@ -5,6 +5,45 @@ const pos = { x: 0, y: 0 }; // Initialize position object
 const move = () => {
   todd.style.translate = `${pos.x}px ${pos.y}px`;
 };
+const toddBigger = 5
+
+let toddSize = 165
+todd.style.width = `${toddSize}px`
+function boundsWidth() {
+  if (pos.x < 0) {
+    pos.x = 0
+    move()
+    console.log("Attempted to move to the left of the window.");
+  } else if (pos.x > innerWidth-toddSize) {
+      pos.x = innerWidth-toddSize
+      move()
+      console.log("Attempted to move to the right of the window.")
+  } else {
+    console.log("Not out of Bounds Widthwise.");
+  } 
+}
+function toddPluss () {
+  toddSize = toddSize+toddBigger
+  todd.style.width = `${toddSize}px`
+}
+function toddMinus () {
+  toddSize = toddSize-toddBigger
+  todd.style.width = `${toddSize}px`
+}
+
+function boundsHeight() {
+  if (pos.y < 0) {
+    pos.y = 0
+    move()
+    console.log("Attempted to move below 0.")
+  } else if (pos.y > innerHeight-toddSize){
+    pos.y = innerHeight-toddSize
+    move()
+    console.log("Attempted to move below window.")
+  } else {
+    console.log("Not out of Bounds Heightwise");
+  }
+}
 
 let moveBy = 10;
 
@@ -29,6 +68,29 @@ if (pos.y < 0) {
   move()
 }
 
+window.addEventListener ("keydown", function(event) {
+  switch (event.key) {
+    case '+':
+     toddPluss()
+     console.log("Todd is growing.")
+     console.log(toddSize)
+     if (toddSize > innerHeight-5) {
+      console.log("Todd is too big.");
+      toddMinus()
+     }
+     break;
+    
+  case '-':
+    toddMinus()
+    console.log("Todd is shrinking.")
+    console.log(toddSize)
+        if (toddSize <10) {
+      console.log("Todd is too small.")
+      toddPluss()
+    }  
+    break;
+  }});
+
 // InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
 // x horisontalt   y vertikalt - Less than <, greater than >
 window.addEventListener("keydown", function(event) {
@@ -36,40 +98,32 @@ window.addEventListener("keydown", function(event) {
         case 'ArrowUp':
             //console.log('Up arrow key pressed');
             //todd.style.top =parseInt(todd.style.top) - moveBy +'px';
-            pos.y -=10
+            pos.y -=moveBy
             console.log(pos);
             move()
-              if (pos.y < 0) {
-                pos.y=0 
-              
-               move()
-               console.log("Stop going up.")
-             }
+            boundsHeight()
+            boundsWidth()
             break;
         case 'ArrowDown':
-            pos.y +=10
+            pos.y +=moveBy
             console.log(pos);
             move()
+            boundsHeight()
+            boundsWidth()
             break;
         case 'ArrowLeft':
-            pos.x -=10
+            pos.x -=moveBy
             console.log(pos);
             move()
-            if (pos.x < 0) {
-              pos.x=0 
-             move()
-             console.log("Stop going left.")
-           } else if (pos.x <0 && pos.y < 0) {
-            pos.x = 0
-            pos.y = 0
-            move()
-            console.log("Why?")
-           }
+            boundsHeight()
+            boundsWidth()
             break;
         case 'ArrowRight':
-            pos.x +=10
+            pos.x +=moveBy
             console.log(pos);
             move()
+            boundsHeight()
+            boundsWidth()
             break;
     }
 });
@@ -82,41 +136,9 @@ addEventListener("click", (toddTest) => {
   // Get click coordinates
   pos.x = toddTest.clientX - todd.offsetWidth / 2;
   pos.y = toddTest.clientY - todd.offsetHeight / 2;
-   if (pos.y < 0 && pos.x >=0 || pos.x+165 > innerWidth && pos.y < 0 ) {
-      pos.y=0 
-  
-    move()
-    console.log("Stop going up.")
-  }  else if (pos.x < 0 && pos.y >=0) {
-    pos.x=0 
-
+  boundsHeight()
+  boundsWidth()
   move()
-  console.log("Stop going left.")
-}else if (pos.x < 0 && pos.y < 0) {
-    pos.x = 0
-    pos.y = 0
-    move()
-    console.log("Why?")
-   } else if (pos.x+165 > innerWidth && pos.y+165 > innerHeight) {
-    pos.x = innerWidth -165
-    pos.y = innerHeight - 165
-    move()
-    console.log("You can't escape.")
-   } else if (pos.x+165 < innerWidth && pos.y+165 > innerHeight) {
-    pos.y = innerHeight - 165
-    move()
-    console.log("No going down.")
-   } else if (pos.x+165 > innerWidth && pos.y+165 < innerHeight) {
-    pos.x = innerWidth - 165
-    move()
-    console.log("Stop going right.")
-   } else if (pos.x+165 > innerWidth && pos.y < 0) {
-    pos.x = innerWidth -165
-    pos.y = 0
-    move()
-    console.log("North East, no.")
-  }
-  move();
 });
 
 let isMoving = false
@@ -142,6 +164,9 @@ function mouseMoveHandler(e) {
 }
 
 
+
+
+// remaining, funksjon
 // move player
 // if x less than border
 // do something
