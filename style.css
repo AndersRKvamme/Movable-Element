@@ -1,11 +1,10 @@
 #btnMoveMe{
-    position:absolute;
-}
-img {
+    position:absolute;    
     border-radius: 10%;
     aspect-ratio: 1;
 }
 
 body {
     overflow: hidden;
+    background-image: url(./Images/bliss-update.jpg);
 }
