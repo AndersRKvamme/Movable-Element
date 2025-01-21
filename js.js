@@ -9,6 +9,12 @@ let toddSize = 165
 let weaponWornSwordPos = {x: 550, y: 550};
 console.log(weaponWornSwordPos)
 
+const bandit = document.querySelector("#bandit")
+
+let banditPos = {x: 200 , y: 550};
+
+bandit.style.translate = `${banditPos.x}px ${banditPos.y}px`;
+
 weaponWornSword.style.translate = `${weaponWornSwordPos.x}px ${weaponWornSwordPos.y}px`;
 
 const move = () => {
@@ -17,13 +23,22 @@ if (weapon == 0 && collionSword(true)) {
   equipWeapon()
 } else if (weapon == 1){
   weaponWornSword.style.translate = `${pos.x+93}px ${pos.y+72}px`;
-} else{
+} else if (collisionBandit(true)){
+console.log("Scary");
+
+}
+
+else {
+
 }
 };
 
 const toddBigger = 5
 
-toddDamage = 5
+let toddHealth = 20
+let toddDamage = 5
+let banditHealth = 20
+let banditDamage = 7
 
 function equipWeapon() {
   if (weapon == 1) {
@@ -40,14 +55,12 @@ function equipWeapon() {
 // InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
 // x horisontalt   y vertikalt - Less than <, greater than >
 
-console.log("Todd is this wide: ", toddSize.width,". Todd is this tall: ", todd.height)
- console.log("Sword is this wide: ", weaponWornSword.width,". Sword is this tall: ", weaponWornSword.height)
 function collionSword(todd,weaponWornSword ) {
   if ( weapon == 0 &&
       pos.x + 145 >=weaponWornSwordPos.x &&
-      pos.x <= weaponWornSwordPos.x + 145 &&
+      pos.x <= weaponWornSwordPos.x + 74 &&
       pos.y + 145 >=weaponWornSwordPos.y &&
-      pos.y <= weaponWornSwordPos.y + 145
+      pos.y <= weaponWornSwordPos.y + 90
   ){       
   equipWeapon()
 } else if (weapon ==1) {
@@ -58,8 +71,19 @@ function collionSword(todd,weaponWornSword ) {
 else {
   console.log("Not touching sword.")
 }
-
 }
+
+function collisionBandit(todd,banditPos) {
+  if (
+      pos.x + 145 >=banditPos.x &&
+      pos.x <= banditPos.x + 74 &&
+      pos.y + 145 >=banditPos.y &&
+      pos.y <= banditPos.y + 90
+  ){ 
+console.log("I didn't buy Skyrim.");
+}else {
+console.log("no");
+}}
 
 function toddReset() {
   toddSize = 165;
@@ -81,7 +105,7 @@ function boundsWidth() {
       move()
       console.log("Attempted to move to the right of the window.")
   } else {
-    console.log("Not out of Bounds Widthwise.");
+    //console.log("Not out of Bounds Widthwise.");
   } 
 }
 function toddPluss () {
@@ -105,7 +129,7 @@ function boundsHeight() {
     move()
     console.log("Attempted to move below window.")
   } else {
-    console.log("Not out of Bounds Heightwise");
+    //console.log("Not out of Bounds Heightwise");
   }
 }
 
@@ -225,6 +249,9 @@ function mouseMoveHandler(e) {
     move()
   }
 }
+
+
+
 
 
 
