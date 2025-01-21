@@ -1,16 +1,43 @@
 const todd = document.querySelector("#btnMoveMe");
 const weaponWornSword = document.querySelector("#wornSword")
 // const todd ={x:0,y:0,ele:{}}
-const pos = { x: 0, y: 0 }; // Initialize position object
 
-const weaponWornSwordPos = {x: 550, y: 550};
+const pos = { x: 0, y: 0 }; // Initialize position object
+let weapon = 0;
+
+
+let weaponWornSwordPos = {x: 550, y: 550};
+console.log(weaponWornSwordPos)
 
 weaponWornSword.style.translate = `${weaponWornSwordPos.x}px ${weaponWornSwordPos.y}px`;
 
 const move = () => {
   todd.style.translate = `${pos.x}px ${pos.y}px`;
+if (weapon == 0 && pos.x == 550 && pos.y == 550) {
+  equipWeapon()
+} else if (weapon == 1){
+  weaponWornSword.style.translate = `${pos.x+93}px ${pos.y+72}px`;
+} else{
+  console.log("Move() else");
+  
+}
 };
+
 const toddBigger = 5
+
+toddDamage = 5
+
+function equipWeapon() {
+  if (weapon == 1) {
+    console.log("Todd can't use two weapons (yet?).")
+    console.log(weapon)
+  } else if (weapon == 0){
+    toddDamage +=5;
+    weapon +=1
+    console.log("Todd is now wielding a worn sword.")
+    console.log(weapon)
+  }
+}
  
 function toddReset() {
   toddSize = 165;
@@ -62,9 +89,7 @@ function boundsHeight() {
 
 let moveBy = 10;
 
-todd.addEventListener("click", () =>{
-    test()
-})
+
 
 window.addEventListener('load', ()=> {
     todd.style.position = 'absolute';
@@ -101,8 +126,8 @@ window.addEventListener ("keydown", function(event) {
         if (toddSize <10) {
       console.log("Todd is too small.")
       toddPluss()
+       break;
     }  
-    break;
     case 'r':
       console.log("Todd has been reset to his original size.");
         toddReset ()

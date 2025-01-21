@@ -11,4 +11,6 @@ body {
 
 #wornSword {
     position: absolute;
+    width: 72px;
+    aspect-ratio: 1;
 }
