@@ -8,3 +8,7 @@ body {
     overflow: hidden;
     background-image: url(./Images/bliss-update.jpg);
 }
+
+#wornSword {
+    position: absolute;
+}

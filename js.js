@@ -1,6 +1,11 @@
 const todd = document.querySelector("#btnMoveMe");
+const weaponWornSword = document.querySelector("wornSword")
 // const todd ={x:0,y:0,ele:{}}
 const pos = { x: 0, y: 0 }; // Initialize position object
+
+const weaponWornSwordPos = {x: 550, y: 550};
+
+weaponWornSword.style.translate = `${weaponWornSwordPos.x}px ${weaponWornSwordPos.y}px`;
 
 const move = () => {
   todd.style.translate = `${pos.x}px ${pos.y}px`;
