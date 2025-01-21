@@ -1,5 +1,5 @@
 const todd = document.querySelector("#btnMoveMe");
-const weaponWornSword = document.querySelector("wornSword")
+const weaponWornSword = document.querySelector("#wornSword")
 // const todd ={x:0,y:0,ele:{}}
 const pos = { x: 0, y: 0 }; // Initialize position object
 
