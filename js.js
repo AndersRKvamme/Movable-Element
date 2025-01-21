@@ -4,7 +4,7 @@ const weaponWornSword = document.querySelector("#wornSword")
 
 const pos = { x: 0, y: 0 }; // Initialize position object
 let weapon = 0;
-
+let toddSize = 165
 
 let weaponWornSwordPos = {x: 550, y: 550};
 console.log(weaponWornSwordPos)
@@ -13,13 +13,11 @@ weaponWornSword.style.translate = `${weaponWornSwordPos.x}px ${weaponWornSwordPo
 
 const move = () => {
   todd.style.translate = `${pos.x}px ${pos.y}px`;
-if (weapon == 0 && pos.x == 550 && pos.y == 550) {
+if (weapon == 0 && collionSword(true)) {
   equipWeapon()
 } else if (weapon == 1){
   weaponWornSword.style.translate = `${pos.x+93}px ${pos.y+72}px`;
 } else{
-  console.log("Move() else");
-  
 }
 };
 
@@ -39,6 +37,30 @@ function equipWeapon() {
   }
 }
  
+// InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
+// x horisontalt   y vertikalt - Less than <, greater than >
+
+console.log("Todd is this wide: ", toddSize.width,". Todd is this tall: ", todd.height)
+ console.log("Sword is this wide: ", weaponWornSword.width,". Sword is this tall: ", weaponWornSword.height)
+function collionSword(todd,weaponWornSword ) {
+  if ( weapon == 0 &&
+      pos.x + 145 >=weaponWornSwordPos.x &&
+      pos.x <= weaponWornSwordPos.x + 145 &&
+      pos.y + 145 >=weaponWornSwordPos.y &&
+      pos.y <= weaponWornSwordPos.y + 145
+  ){       
+  equipWeapon()
+} else if (weapon ==1) {
+  console.log("Already has the Sword.");
+  
+}
+
+else {
+  console.log("Not touching sword.")
+}
+
+}
+
 function toddReset() {
   toddSize = 165;
   toddSize-toddSize
@@ -47,7 +69,7 @@ function toddReset() {
   boundsWidth()
 }
 
-let toddSize = 165
+
 todd.style.width = `${toddSize}px`
 function boundsWidth() {
   if (pos.x < 0) {
