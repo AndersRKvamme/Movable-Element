@@ -57,9 +57,9 @@ function equipWeapon() {
 
 function collionSword() {
   if ( weapon === 0 &&
-      pos.x + 145 >=weaponWornSwordPos.x &&
+      pos.x + toddSize-8 >=weaponWornSwordPos.x &&
       pos.x <= weaponWornSwordPos.x + 78 &&
-      pos.y + 165 >=weaponWornSwordPos.y &&
+      pos.y + toddSize-8 >=weaponWornSwordPos.y &&
       pos.y <= weaponWornSwordPos.y + 88
   ){       
   equipWeapon()
@@ -76,19 +76,31 @@ else {
 // InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
 // x horisontalt   y vertikalt - Less than <, greater than >
 
+// if pos.x >= banditPos.x && pos.y >= banditPos.y && pos.y <= banditPos.y+72 
+
 function collisionBandit() {
   if (
-      pos.x + toddSize >=banditPos.x &&
+      pos.x + toddSize-8 >=banditPos.x &&
       pos.x <= banditPos.x + 78 &&
-      pos.y + toddSize >=banditPos.y &&
+      pos.y + toddSize-8 >=banditPos.y &&
       pos.y <= banditPos.y + 88
   ){ 
 console.log("I didn't buy Skyrim.");
+return true
+
 }else {
 console.log("no");
+return false
 }}
 
-
+function collisionUnit () {
+  if (collisionBandit()) {
+    console.log("Crashing!");
+    return true 
+  } else { 
+return false
+  }
+}
 
 function toddReset() {
   toddSize = 165;
@@ -97,6 +109,7 @@ function toddReset() {
   boundsHeight()
   boundsWidth()
 }
+
 
 
 
@@ -193,33 +206,79 @@ window.addEventListener ("keydown", function(event) {
 window.addEventListener("keydown", function(event) {
     switch (event.key) {
         case 'ArrowUp':
+          if (collisionUnit()== false){
             pos.y -=moveBy
             console.log(pos);
             move()
             boundsHeight()
+            boundsWidth() 
+            break;}
+          else if (collisionUnit()== true){
+            pos.y = banditPos.y + 90
+            console.log(pos);
+            move()
+            boundsHeight()
             boundsWidth()
+          break;
+          } else {
             break;
+          }
+          
         case 'ArrowDown':
+          if (collisionUnit()== false){
             pos.y +=moveBy
             console.log(pos);
             move()
             boundsHeight()
             boundsWidth()
+            break;}
+          else if (collisionUnit()== true){
+            pos.y = pos.y-10
+            console.log(pos);
+            move()
+            boundsHeight()
+            boundsWidth()
+          break;
+          } else {
             break;
+          }
+          
         case 'ArrowLeft':
+          if (collisionUnit()== false){
             pos.x -=moveBy
             console.log(pos);
             move()
             boundsHeight()
             boundsWidth()
+            break;}
+            else if (collisionUnit()== true){
+              pos.x = banditPos.x+80
+              console.log(pos);
+              move()
+              boundsHeight()
+              boundsWidth()
             break;
+            } else {
+              break;
+            }
         case 'ArrowRight':
+          if (collisionUnit()== false){
             pos.x +=moveBy
             console.log(pos);
             move()
             boundsHeight()
             boundsWidth()
+            break;}
+            else if (collisionUnit()== true){
+              pos.x = banditPos.x-20
+              console.log(pos);
+              move()
+              boundsHeight()
+              boundsWidth()
             break;
+            } else {
+              break;
+            }
     }
 });
 
