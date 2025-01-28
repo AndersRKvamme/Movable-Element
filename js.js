@@ -19,11 +19,11 @@ weaponWornSword.style.translate = `${weaponWornSwordPos.x}px ${weaponWornSwordPo
 
 const move = () => {
   todd.style.translate = `${pos.x}px ${pos.y}px`;
-if (weapon == 0 && collionSword(true)) {
+if (weapon === 0 && collionSword()) {
   equipWeapon()
-} else if (weapon == 1){
+} else if (weapon === 1){
   weaponWornSword.style.translate = `${pos.x+93}px ${pos.y+72}px`;
-} else if (collisionBandit(true)){
+} else if (collisionBandit()){
 console.log("Scary");
 
 }
@@ -41,10 +41,10 @@ let banditHealth = 20
 let banditDamage = 7
 
 function equipWeapon() {
-  if (weapon == 1) {
+  if (weapon === 1) {
     console.log("Todd can't use two weapons (yet?).")
     console.log(weapon)
-  } else if (weapon == 0){
+  } else if (weapon === 0){
     toddDamage +=5;
     weapon +=1
     console.log("Todd is now wielding a worn sword.")
@@ -55,15 +55,15 @@ function equipWeapon() {
 // InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
 // x horisontalt   y vertikalt - Less than <, greater than >
 
-function collionSword(todd,weaponWornSword ) {
-  if ( weapon == 0 &&
+function collionSword() {
+  if ( weapon === 0 &&
       pos.x + 145 >=weaponWornSwordPos.x &&
       pos.x <= weaponWornSwordPos.x + 74 &&
       pos.y + 145 >=weaponWornSwordPos.y &&
       pos.y <= weaponWornSwordPos.y + 90
   ){       
   equipWeapon()
-} else if (weapon ==1) {
+} else if (weapon ===1) {
   console.log("Already has the Sword.");
   
 }
@@ -73,7 +73,7 @@ else {
 }
 }
 
-function collisionBandit(todd,banditPos) {
+function collisionBandit() {
   if (
       pos.x + 145 >=banditPos.x &&
       pos.x <= banditPos.x + 74 &&
@@ -215,6 +215,7 @@ window.addEventListener("keydown", function(event) {
     }
 });
 
+// - 
 
 // moves todd to the clicked position - lent from Hector
 
