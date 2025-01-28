@@ -58,9 +58,9 @@ function equipWeapon() {
 function collionSword() {
   if ( weapon === 0 &&
       pos.x + 145 >=weaponWornSwordPos.x &&
-      pos.x <= weaponWornSwordPos.x + 74 &&
-      pos.y + 145 >=weaponWornSwordPos.y &&
-      pos.y <= weaponWornSwordPos.y + 90
+      pos.x <= weaponWornSwordPos.x + 78 &&
+      pos.y + 165 >=weaponWornSwordPos.y &&
+      pos.y <= weaponWornSwordPos.y + 88
   ){       
   equipWeapon()
 } else if (weapon ===1) {
@@ -73,17 +73,22 @@ else {
 }
 }
 
+// InnerHeight and InnerWidth shows window size for collision. DO NOT HARDCODE.
+// x horisontalt   y vertikalt - Less than <, greater than >
+
 function collisionBandit() {
   if (
-      pos.x + 145 >=banditPos.x &&
-      pos.x <= banditPos.x + 74 &&
-      pos.y + 145 >=banditPos.y &&
-      pos.y <= banditPos.y + 90
+      pos.x + toddSize >=banditPos.x &&
+      pos.x <= banditPos.x + 78 &&
+      pos.y + toddSize >=banditPos.y &&
+      pos.y <= banditPos.y + 88
   ){ 
 console.log("I didn't buy Skyrim.");
 }else {
 console.log("no");
 }}
+
+
 
 function toddReset() {
   toddSize = 165;
@@ -94,7 +99,10 @@ function toddReset() {
 }
 
 
+
 todd.style.width = `${toddSize}px`
+
+
 function boundsWidth() {
   if (pos.x < 0) {
     pos.x = 0
@@ -173,7 +181,7 @@ window.addEventListener ("keydown", function(event) {
       console.log("Todd is too small.")
       toddPluss()
        break;
-    }  
+    }  break;
     case 'r':
       console.log("Todd has been reset to his original size.");
         toddReset ()

@@ -18,4 +18,6 @@ body {
 #bandit {
     position: absolute;
     aspect-ratio: 1;
+    width: 72px;
+    height: 72px;
 }
