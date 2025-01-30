@@ -33,6 +33,17 @@ else {
 }
 };
 
+function frame() {
+  if (weaponWornSwordPos == pos.x+93) {
+    clearInterval(weaponWornSword);
+  } else {
+    weaponWornSwordPos++; 
+    weaponWornSword = setInterval(frame, 5);
+    weaponWornSword.style.translate = `${pos.x+toddSize}px ${weaponWornSwordPos.y+toddSize}px`;
+    weaponWornSword.style.translate = `${pos.x+toddSize}px ${weaponWornSwordPos.y+toddSize+72}px`;
+    clearInterval(weaponWornSword)
+  }
+}
 const toddBigger = 5
 
 let toddHealth = 20
@@ -156,8 +167,6 @@ function boundsHeight() {
 
 let moveBy = 10;
 
-
-
 window.addEventListener('load', ()=> {
     todd.style.position = 'absolute';
     todd.style.left = 0;
@@ -279,7 +288,18 @@ window.addEventListener("keydown", function(event) {
             } else {
               break;
             }
-    }
+            case 'q':
+              //Move weapon around Todd before resetting
+              weaponWornSword = setInterval(frame, 5);
+              weaponWornSword.style.translate = `${pos.x+toddSize}px ${weaponWornSwordPos.y+toddSize}px`;
+              weaponWornSword.style.translate = `${pos.x+toddSize}px ${weaponWornSwordPos.y+toddSize+72}px`;
+              console.log("ATTACK!");
+              
+            break;
+          
+            case 'e': 
+              break;
+          }
 });
 
 // - 
